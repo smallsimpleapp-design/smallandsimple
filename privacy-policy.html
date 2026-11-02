@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Privacy policies for games published by Small&Simple.">
   <meta name="color-scheme" content="light">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <title>Game Privacy Policies — Small&amp;Simple</title>
   <style>
     :root { --ink:#20252b; --muted:#5f6b76; --line:#e3e8ec; --accent:#286b5b; --paper:#fff; --wash:#f3f7f5; }
@@ -13,7 +14,8 @@
     main { width:min(760px,calc(100% - 32px)); margin:56px auto; }
     .card { background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:clamp(26px,6vw,52px); box-shadow:0 12px 38px #20352c0b; }
     a { color:var(--accent); text-underline-offset:3px; }
-    .brand { color:var(--accent); font-size:.78rem; font-weight:750; letter-spacing:.12em; text-transform:uppercase; }
+    .brand { display:block; width:min(280px,70vw); overflow:hidden; border-radius:9px; line-height:0; background:#192639; margin-bottom:24px; }
+    .brand img { display:block; width:100%; height:auto; }
     h1 { margin:8px 0; font-size:clamp(2rem,7vw,3rem); line-height:1.15; letter-spacing:-.04em; }
     .intro { margin:0 0 28px; color:var(--muted); }
     .game { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:20px 0; border-top:1px solid var(--line); }
@@ -27,7 +29,7 @@
 </head>
 <body>
   <main><article class="card">
-    <div class="brand">Small&amp;Simple</div>
+    <a class="brand" href="index.html" aria-label="Small and Simple home"><img src="assets/small-and-simple-logo.png" alt="Small&Simple Android App Co."></a>
     <h1>Privacy policies</h1>
     <p class="intro">Choose a game to read its privacy policy. Each policy describes the information practices for that game.</p>
     <section class="game"><div><h2>ChromaFlash</h2></div><a class="button" href="privacy/chromaflash.html">View policy <span aria-hidden="true">→</span></a></section>
@@ -36,3 +38,5 @@
   </article></main>
 </body>
 </html>
+
+
