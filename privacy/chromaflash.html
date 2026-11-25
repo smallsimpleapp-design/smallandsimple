@@ -38,7 +38,6 @@
       <div class="content"><h1>Privacy Policy for ChromaFlash</h1>
 <p><strong>Effective Date:</strong> November 24, 2026<br />
 <strong>App Name:</strong> ChromaFlash<br />
-<strong>Android Package Name:</strong> <code>com.aistudio.chromaflash.kftw</code><br />
 <strong>Contact Email:</strong> <code>smallsimple.app@gmail.com</code></p>
 <hr />
 <h2>1. Overview</h2>
@@ -61,19 +60,32 @@
 - <strong>Authentication Tokens</strong>: Short-lived Google ID tokens and Firebase ID tokens used solely to verify your identity during sign-in, Cloud Firestore access, and purchase verification.</p>
 <h3>C. In-App Purchase &amp; Entitlement Data</h3>
 <p>ChromaFlash offers permanent in-app unlocks (individual preset colors, full Color Palette, and Party Mode) processed exclusively through <strong>Google Play Billing</strong>.</p>
-<p>When you complete an in-app purchase while signed in, we verify the transaction and store the minimum entitlement and anti-fraud records required in <strong>Firebase Cloud Firestore</strong> (and, when enabled, via our Firebase Cloud Function <code>verifyPlayPurchase</code>):
-- <strong>Entitlement State</strong> (<code>/users/{userId}/entitlements/state</code>):
-  - Your Firebase <code>userId</code>
-  - List of unlocked color IDs (<code>unlockedColorIds</code>)
-  - Whether Color Palette (<code>isColorPaletteUnlocked</code>) and Party Mode (<code>isPartyModeUnlocked</code>) are unlocked
-  - SHA-256 hash of your most recent purchase token (<code>lastPurchaseId</code>) and server timestamps (<code>createdAt</code>, <code>updatedAt</code>)
-- <strong>Verified Purchase Receipt Record</strong> (<code>/users/{userId}/verified_purchases/{purchaseId}</code>):
-  - Your Firebase <code>userId</code>
-  - Purchased Google Play <code>productId</code> (e.g., <code>color_cyan</code>, <code>color_palette</code>, <code>party_mode</code>)
-  - Google Play <code>orderId</code>, <code>purchaseToken</code>, <code>packageName</code>, <code>priceInr</code>, <code>currency</code> (<code>INR</code>), <code>purchaseTimeMillis</code>, <code>verificationStatus</code>, <code>verificationMethod</code>, and <code>createdAt</code> timestamp
-- <strong>Anti-Replay Token Lock</strong> (<code>/purchase_tokens/{purchaseId}</code>):
-  - Cryptographic SHA-256 hash (<code>purchaseId</code>) of the Google Play <code>purchaseToken</code>, paired with <code>userId</code>, <code>productId</code>, <code>orderId</code>, and <code>createdAt</code>
-  - Used strictly to prevent the same Google Play purchase token from being claimed or replayed across multiple accounts.</p>
+<p>When you complete an in-app purchase while signed in, we verify the transaction and store the minimum entitlement and anti-fraud records required in <strong>Firebase Cloud Firestore</strong> (and, when enabled, via our Firebase Cloud Function ):
+<ul>
+ <strong>Entitlement State</strong>:
+ <ul>
+  <li>Your Firebase <code>userId</code></li>
+  <li>List of unlocked color IDs.</li>
+  <li>Whether Color Palette and Party Mode are unlocked.</li>
+  <li>SHA-256 hash of your most recent purchase token and server timestamps.</li>
+  </ul>
+ </ul>
+<ul>
+<strong>Verified Purchase Receipt Record:</strong>
+<ul>
+  <li>Your Firebase <code>userId.</code></li>
+  <li>Purchased Google Play <code>productId.</code></li>
+  <li>Google Play <code>orderId</code>, <code>price</code>, <code>currency</code>(<code>INR</code>), <code>purchase Time</code>, <code>verification Status</code> and </code> timestamps.</li>
+  </ul>
+</ul>
+<ul><strong>Anti-Replay Token Lock</strong>:
+<ul>
+  <li>Cryptographic SHA-256 hash (<code>purchaseId</code>) of the Google Play <code>purchaseToken</code>, paired with <code>userId</code>, <code>productId</code>, <code>orderId</code>, and <code>timestamps.</code></li>
+  <li>Used strictly to prevent the same Google Play purchase token from being claimed or replayed across multiple accounts.</li>
+ </ul>
+</ul> 
+ </p>
+
 <p><strong>Payment Details We Do NOT Collect:</strong><br />
 All financial transactions are handled directly by Google Play. ChromaFlash <strong>never</strong> receives, collects, views, or stores your credit/debit card numbers, bank details, UPI IDs, or billing address.</p>
 <hr />
@@ -89,42 +101,59 @@ All financial transactions are handled directly by Google Play. ChromaFlash <str
 </thead>
 <tbody>
 <tr>
-<td><strong><code>CAMERA</code></strong> (<code>android.permission.CAMERA</code>) &amp; <strong><code>FLASHLIGHT</code></strong></td>
-<td>Used exclusively via Android <code>CameraManager.setTorchMode()</code> to toggle your device's rear LED flash ON/OFF when <strong>Flash</strong> output is selected.</td>
+<td><strong><code>CAMERA</code></strong> &amp; <strong><code>FLASHLIGHT</code></strong></td>
+<td>Used exclusively via Android </code> to toggle your device's rear LED flash ON/OFF when <strong>Flash</strong> output is selected.</td>
 <td><strong>No.</strong> ChromaFlash does <strong>not</strong> take photos, record video, preview camera feeds, or access/store any camera frames.</td>
 </tr>
 <tr>
-<td><strong><code>INTERNET</code></strong> (<code>android.permission.INTERNET</code>)</td>
+<td><strong><code>INTERNET</code></strong> </td>
 <td>Used exclusively for Google Sign-In, syncing your unlocked features with Firebase Cloud Firestore, fetching live store pricing/catalog items, and verifying Google Play purchases.</td>
 <td>Only account, entitlement, and purchase verification data described in Section 2.</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Display &amp; Window Behavior:</strong><br />
-While the flashlight is turned ON, ChromaFlash temporarily keeps the screen awake (<code>FLAG_KEEP_SCREEN_ON</code>) and adjusts screen brightness (<code>screenBrightness</code>). When you turn off the light, minimize the app, or close it, the light and brightness overrides automatically turn off.</p>
+While the flashlight is turned ON, ChromaFlash temporarily keeps the screen awake  and adjusts screen brightness. When you turn off the light, minimize the app, or close it, the light and brightness overrides automatically turn off.</p>
 <hr />
 <h2>4. Information We Do NOT Collect</h2>
-<p>ChromaFlash does <strong>not</strong>:
-- Collect photos, videos, audio, or microphone recordings
-- Collect precise or approximate location (GPS, Wi-Fi, or Bluetooth beacons)
-- Access contacts, SMS, call logs, files, or media libraries
-- Integrate third-party advertising SDKs or collect your Android Advertising ID (AAID)
-- Track you across third-party apps or websites
-- Sell, rent, or trade your personal information to third parties</p>
+<p>
+<ul>
+ChromaFlash does <strong>not</strong>:
+<ul/>
+<li>Collect photos, videos, audio, or microphone recordings.</li>
+<li>Collect precise or approximate location (GPS, Wi-Fi, or Bluetooth beacons).</li>
+<li>Access contacts, SMS, call logs, files, or media libraries.</li>
+<li>Integrate third-party advertising SDKs or collect your Android Advertising ID.</li>
+<li>Track you across third-party apps or websites.</li>
+<li>Sell, rent, or trade your personal information to third parties.</li>
+</ul>
+</ul></p>
 <hr />
 <h2>5. Third-Party Services &amp; Data Sharing</h2>
-<p>We share data <strong>only</strong> with essential infrastructure providers required to operate authentication, cloud sync, and billing:
-- <strong>Google LLC</strong>:
-  - <strong>Google Play Billing &amp; Google Play Developer API</strong>: Processes payments, provides in-app product pricing, and verifies purchase validity.
-  - <strong>Google Sign-In / Android Credential Manager &amp; Firebase Authentication</strong>: Authenticates your account.
-  - <strong>Google Cloud Firestore &amp; Firebase Cloud Functions</strong>: Stores your synced entitlements, verified purchase records, and anti-replay purchase locks.</p>
+<p>
+<ul>We share data <strong>only</strong> with essential infrastructure providers required to operate authentication, cloud sync, and billing:
+<ul>
+<li><strong>Google LLC</strong>:</li>
+<ul>
+  <li><strong>Google Play Billing &amp; Google Play Developer API</strong>: Processes payments, provides in-app product pricing, and verifies purchase validity.</li>
+  <li><strong>Google Sign-In / Android Credential Manager &amp; Firebase Authentication</strong>: Authenticates your account.</li>
+  <li><strong>Google Cloud Firestore &amp; Firebase Cloud Functions</strong>: Stores your synced entitlements, verified purchase records, and anti-replay purchase locks.</li>
+  </ul>	
+  </p>
+ </ul>
+</ul> 
 <p>Data may also be disclosed only if required by applicable law, legal process, or to protect against fraud and unauthorized access.</p>
 <hr />
 <h2>6. Data Security</h2>
-<p>We implement technical and architectural safeguards to protect your data:
-- <strong>Encrypted Transit</strong>: All network communication with Google Sign-In, Google Play, Firebase Authentication, Cloud Firestore, and verification endpoints uses HTTPS/TLS encryption.
-- <strong>Strict Access Controls</strong>: Firestore Security Rules restrict read and write access to your personal entitlement and purchase documents exclusively to your authenticated Firebase user ID (<code>request.auth.uid == userId</code>).
-- <strong>Purchase Integrity</strong>: In-app purchase receipts are validated against package identity, product pricing, cryptographic Play signatures / Play Developer API verification, and SHA-256 anti-replay token locks.</p>
+<p>
+<ul>We implement technical and architectural safeguards to protect your data:
+<ul>
+<li><strong>Encrypted Transit</strong>: All network communication with Google Sign-In, Google Play, Firebase Authentication, Cloud Firestore, and verification endpoints uses HTTPS/TLS encryption.</li>
+<li><strong>Strict Access Controls</strong>: Firestore Security Rules restrict read and write access to your personal entitlement and purchase documents exclusively to your authenticated Firebase user ID.</li>
+<li><strong>Purchase Integrity</strong>: In-app purchase receipts are validated against package identity, product pricing, cryptographic Play signatures / Play Developer API verification, and SHA-256 anti-replay token locks.</li>
+</ul>
+</ul>
+</p>
 <hr />
 <h2>7. Data Retention &amp; Account Deletion</h2>
 <ul>
@@ -132,9 +161,11 @@ While the flashlight is turned ON, ChromaFlash temporarily keeps the screen awak
 <li><strong>Signing Out</strong>: You can sign out at any time from the <strong>Account</strong> dialog in the app (<strong>Sign Out / Switch Account</strong>), which signs you out of Firebase Authentication and clears your local Credential Manager session.</li>
 <li><strong>Requesting Data &amp; Account Deletion</strong>:<br />
   You can request deletion of your ChromaFlash account and associated Firestore entitlement records by emailing <strong><code>smallsimple.app@gmail.com</code></strong> from (or identifying) the Google email address linked to your account.  </li>
-<li>Upon verification, we will delete your account and personal entitlement profile (<code>/users/{uid}/entitlements/state</code>).  </li>
+<ul>
+<li>Upon verification, we will delete your account and personal entitlement profile.  </li>
 <li>Please note that anonymized/hashed transaction records or order IDs may be retained where strictly necessary to prevent purchase replay fraud, resolve billing disputes, or comply with legal, tax, and Google Play accounting obligations.</li>
 <li>Note that uninstalling the app removes local app data from your device, while cloud-synced purchases remain linked to your Google account unless you request deletion (and purchases can always be restored via Google Play when signed into the same account).</li>
+</ul>
 </ul>
 <hr />
 <h2>8. Children's Privacy</h2>
@@ -150,7 +181,7 @@ While the flashlight is turned ON, ChromaFlash temporarily keeps the screen awak
 <p>If you have questions about this Privacy Policy, your data, or deletion requests, please contact:</p>
 <ul>
 <li><strong>Developer Contact:</strong> <code>smallsimple.app@gmail.com</code></li>
-<li><strong>Application:</strong> ChromaFlash (<code>com.aistudio.chromaflash.kftw</code>)</li>
+<li><strong>Application:</strong> ChromaFlash</li>
 </ul></div>
       <footer><a href="../privacy-policy.html">← All game privacy policies</a></footer>
     </article>
